@@ -1,0 +1,5 @@
+# GTalkabout admin directories
+.gta/
+
+# Subversion admin directories
+.svn/
