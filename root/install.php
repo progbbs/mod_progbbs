@@ -53,14 +53,12 @@ $version_config_name = 'mod_progbbs_version';
 */
 $versions = array(
 	'0.0.1' => array(
-
-
-
-
-
-
+		'config_add' => array(
+			array('allow_baidu_share', false),
+		),
 	),
 );
 
 // Include the UMIL Auto file, it handles the rest
 include($phpbb_root_path . 'umil/umil_auto.' . $phpEx);
+?>
