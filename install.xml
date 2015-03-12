@@ -205,5 +205,20 @@ if ( $config['allow_baidu_share'] )
 </action>
 		</edit>
 	</open>
+	<open src="language/zh_cmn_hans/acp/forums.php">
+		<edit>
+			<find><![CDATA[?>]]></find>
+			<action type="before-add"><![CDATA[//Forum SEO
+$lang = array_merge($lang, array(
+	'FORUM_SEO_SETTINGS'				=> '版面SEO',
+	'FORUM_SEO_KEY'							=> 'SEO 关键字',
+	'FORUM_SEO_KEY_EXPLAIN'			=> '请在这里输入SEO 关键字，用逗号分隔',
+	'FORUM_SEO_DESC'						=> 'SEO 描述',
+	'FORUM_SEO_DESC_EXPLAIN'		=> '请在此输入SEO 描述',
+	'FORUM_SEO_BOTTOM'					=> 'SEO 底部信息',
+  'FORUM_SEO_BOTTOM_EXPLAIN'	=> '请在此输入SEO 底部信息，<br />它将显示在版面的底部',
+));]]></action>
+		</edit>
+	</open>
 </action-group>
 </mod>
