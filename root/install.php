@@ -57,6 +57,11 @@ $versions = array(
 			array('allow_baidu_share', false),
 		),
 	),
+	'0.0.2' => array(
+		'config_add' => array(
+			array('noavatar_noapprove', false),
+		),
+	),
 );
 
 // Include the UMIL Auto file, it handles the rest
