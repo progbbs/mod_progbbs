@@ -33,6 +33,19 @@ Please check: http://www.phpbb.com/mods/umil for the latest version of the UMI L
 	<copy>
 		<file from="root/*.*" to="*.*" />
 	</copy>
+	<open src="index.php">
+		<edit>
+			<find>// Output page</find>
+			<action type="before-add">// Begin: MOD ProgBBS
+if ( $config['allow_baidu_share'] )
+{
+	$template->assign_vars(array(
+		'S_BAIDU_SHARE' 			=> true,
+	));
+}
+// End: MOD ProgBBS</action>
+		</edit>
+	</open>
 	<open src="styles/prosilver/template/overall_header.html">
 		<edit>
 			<find><![CDATA[				<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->]]></find>
