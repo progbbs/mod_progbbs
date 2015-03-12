@@ -46,6 +46,20 @@ if ( $config['allow_baidu_share'] )
 // End: MOD ProgBBS</action>
 		</edit>
 	</open>
+	<open src="posting.php">
+		<edit>
+			<find>			// The last parameter tells submit_post if search indexer has to be run
+			$redirect_url = submit_post($mode, $post_data['post_subject'], $post_author_name, $post_data['topic_type'], $poll, $data, $update_message, ($update_message || $update_subject) ? true : false);</find>
+			<action type="before-add">			// Begin: MOD ProgBBS
+			if( $config['noavatar_noapprove'] )
+			{
+				if( !$user->data['user_avatar'] )
+					trigger_error('USER_NOAVATAR_DENIED');
+			}
+			// End: MOD ProgBBS
+</action>
+		</edit>
+	</open>
 	<open src="styles/prosilver/template/overall_header.html">
 		<edit>
 			<find><![CDATA[				<!-- IF U_PRINT_PM --><li class="rightside"><a href="{U_PRINT_PM}" title="{L_PRINT_PM}" accesskey="p" class="print">{L_PRINT_PM}</a></li><!-- ENDIF -->]]></find>
@@ -66,6 +80,15 @@ if ( $config['allow_baidu_share'] )
 			<action type="after-add">						// Begin: MOD ProgBBS
 						'allow_baidu_share'	=> array('lang' => 'ALLOW_BAIDU_SHARE',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						// End: MOD ProgBBS</action>
+		</edit>
+	</open>
+	<open src="language/zh_cmn_hans/posting.php">
+		<edit>
+			<find>	'VIEW_MESSAGE'				=> </find>
+			<action type="before-add">	// Begin: MOD ProgBBS
+	'USER_NOAVATAR_DENIED'	=> '为防止垃圾帖，请设置您的头像再发帖，我们会对您的帖进行审阅。'
+	// End: MOD ProgBBS
+</action>
 		</edit>
 	</open>
 </action-group>
