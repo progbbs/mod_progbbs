@@ -20,11 +20,11 @@ Please check: http://www.phpbb.com/mods/umil for the latest version of the UMI L
 		</author>
 	</author-group>
 
-	<mod-version>0.0.2</mod-version>
+	<mod-version>0.0.3</mod-version>
 
 	<installation>
 		<level>easy</level>
-		<time>60</time>
+		<time>120</time>
 		<target-version>3.0.12</target-version>
 	</installation>
 	<history>
@@ -34,6 +34,13 @@ Please check: http://www.phpbb.com/mods/umil for the latest version of the UMI L
 			<changelog lang="cn">
 				<change>初始版本</change>
 				<change>在首页/版面/帖子增加百度分享按钮，并可以通过配置开启/关闭</change>
+			</changelog>
+		</entry>
+		<entry>
+			<date>2015-03-13</date>
+			<rev-version>0.0.2</rev-version>
+			<changelog lang="cn">
+				<change>可以通过配置开启/关闭没有设置头像的用户不能发帖，目的是为了防止机器人发垃圾帖</change>
 			</changelog>
 		</entry>
 	</history>
@@ -90,6 +97,61 @@ if ( $config['allow_baidu_share'] )
 			<action type="after-add">						// Begin: MOD ProgBBS
 						'allow_baidu_share'	=> array('lang' => 'ALLOW_BAIDU_SHARE',	'validate' => 'bool',	'type' => 'radio:yes_no', 'explain' => true),
 						// End: MOD ProgBBS</action>
+		</edit>
+	</open>
+	<open src="adm/style/acp_forums.html">
+		<edit>
+			<find><![CDATA[			if (value == {FORUM_POST})
+			{
+				dE('forum_post_options', 1);
+				dE('forum_link_options', -1);
+				dE('forum_rules_options', 1);
+				dE('forum_cat_options', -1);]]></find>
+			<action type="after-add"><![CDATA[				dE('forum_seo_options', 1);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[else if (value == {FORUM_LINK})
+			{
+				dE('forum_post_options', -1);
+				dE('forum_link_options', 1);
+				dE('forum_rules_options', -1);
+				dE('forum_cat_options', -1);]]></find>
+			<action type="after-add"><![CDATA[				dE('forum_seo_options', -1);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[			else if (value == {FORUM_CAT})
+			{
+				dE('forum_post_options', -1);
+				dE('forum_link_options', -1);
+				dE('forum_rules_options', 1);
+				dE('forum_cat_options', 1);]]></find>
+			<action type="after-add"><![CDATA[				dE('forum_seo_options', 1);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[			<!-- IF S_FORUM_LINK -->
+			dE('forum_rules_options', -1);]]></find>
+				<action type="after-add"><![CDATA[			dE('forum_seo_options', -1);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[	<div id="forum_cat_options">]]></find>
+			<action type="before-add"><![CDATA[	<div id="forum_seo_options">
+		<fieldset>
+			<legend>{L_FORUM_SEO_SETTINGS}</legend>
+		<dl>
+			<dt><label for="forum_seo_key">{L_FORUM_SEO_KEY}:</label><br /><span>{L_FORUM_SEO_KEY_EXPLAIN}</span></dt>
+			<dd><input class="text medium" type="text" id="forum_seo_key" name="forum_seo_key" value="{FORUM_SEO_KEY}" maxlength="255" /></dd>
+		</dl>
+		<dl>
+			<dt><label for="forum_seo_desc">{L_FORUM_SEO_DESC}:</label><br /><span>{L_FORUM_SEO_DESC_EXPLAIN}</span></dt>
+			<dd><textarea id="forum_seo_desc" name="forum_seo_desc" rows="5" cols="45" maxlength="255">{FORUM_SEO_DESC}</textarea></dd>
+		</dl>
+		<dl>
+			<dt><label for="forum_seo_bottom">{L_FORUM_SEO_BOTTOM}:</label><br /><span>{L_FORUM_SEO_BOTTOM_EXPLAIN}</span></dt>
+			<dd><textarea id="forum_seo_bottom" name="forum_seo_bottom" rows="5" cols="45" maxlength="255">{FORUM_SEO_BOTTOM}</textarea></dd>
+		</dl>
+		</fieldset>
+	</div>
+]]></action>
 		</edit>
 	</open>
 	<open src="language/zh_cmn_hans/posting.php">
