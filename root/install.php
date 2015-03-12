@@ -52,14 +52,24 @@ $version_config_name = 'mod_progbbs_version';
 * The version numbering must otherwise be compatible with the version_compare function - http://php.net/manual/en/function.version-compare.php
 */
 $versions = array(
+	// 集成百度分享
 	'0.0.1' => array(
 		'config_add' => array(
 			array('allow_baidu_share', false),
 		),
 	),
+	// 防止机器人发垃圾帖
 	'0.0.2' => array(
 		'config_add' => array(
 			array('noavatar_noapprove', false),
+		),
+	),
+	// 版面的搜索引擎优化
+	'0.0.3'	=> array(
+		'table_column_add' => array(
+			array('phpbb_forums', 'forum_seo_key', array('VCHAR_UNI', '')),
+			array('phpbb_forums', 'forum_seo_desc', array('TEXT_UNI', '')),
+			array('phpbb_forums', 'forum_seo_bottom', array('TEXT_UNI', '')),
 		),
 	),
 );
