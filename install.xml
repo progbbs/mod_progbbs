@@ -20,13 +20,23 @@ Please check: http://www.phpbb.com/mods/umil for the latest version of the UMI L
 		</author>
 	</author-group>
 
-	<mod-version>0.0.1</mod-version>
+	<mod-version>0.0.2</mod-version>
 
 	<installation>
 		<level>easy</level>
 		<time>60</time>
 		<target-version>3.0.12</target-version>
 	</installation>
+	<history>
+		<entry>
+			<date>2015-03-12</date>
+			<rev-version>0.0.1</rev-version>
+			<changelog lang="cn">
+				<change>初始版本</change>
+				<change>在首页/版面/帖子增加百度分享按钮，并可以通过配置开启/关闭</change>
+			</changelog>
+		</entry>
+	</history>
 </header>
 
 <action-group>
