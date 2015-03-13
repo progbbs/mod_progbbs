@@ -67,9 +67,13 @@ $versions = array(
 	// 版面的搜索引擎优化
 	'0.0.3'	=> array(
 		'table_column_add' => array(
-			array('phpbb_forums', 'forum_seo_key', array('VCHAR_UNI', '')),
-			array('phpbb_forums', 'forum_seo_desc', array('TEXT_UNI', '')),
-			array('phpbb_forums', 'forum_seo_bottom', array('TEXT_UNI', '')),
+			array(FORUMS_TABLE, 'forum_seo_key', array('VCHAR_UNI', '')),
+			array(FORUMS_TABLE, 'forum_seo_desc', array('TEXT_UNI', '')),
+			array(FORUMS_TABLE, 'forum_seo_bottom', array('TEXT_UNI', '')),
+		),
+	// 用户信息增加github资料
+	'0.0.4' => array(
+			array(USERS_TABLE, 'user_github', array('VCHAR_UNI', '')),
 		),
 	),
 );
