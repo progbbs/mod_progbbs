@@ -70,6 +70,13 @@ if ( $config['allow_baidu_share'] )
 // End: MOD ProgBBS</action>
 		</edit>
 	</open>
+	<open src="memberlist.php">
+		<edit>
+			<find><![CDATA[		'L_VIEWING_PROFILE'	=> sprintf($user->lang['VIEWING_PROFILE'], $username),]]></find>
+			<action type="after-add"><![CDATA[
+		'USER_GITHUB'		=> $data['user_github'],]]></action>
+		</edit>
+	</open>
 	<open src="posting.php">
 		<edit>
 			<find>			// The last parameter tells submit_post if search indexer has to be run
@@ -90,12 +97,10 @@ if ( $config['allow_baidu_share'] )
 			<action type="after-add"><![CDATA[    <!-- IF S_BAIDU_SHARE --><script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"....","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script><!-- ENDIF -->]]></action>
 		</edit>
 	</open>
-	<open src="includes/functions_display.php">
+	<open src="styles/prosilver/template/memberlist_view.html">
 		<edit>
-			<find><![CDATA[		'FORUM_DESC'	=> generate_text_for_display($forum_data['forum_desc'], $forum_data['forum_desc_uid'], $forum_data['forum_desc_bitfield'], $forum_data['forum_desc_options']),]]></find>
-			<action type="before-add"><![CDATA[		'FORUM_SEO_KEY'         => $forum_data['forum_seo_key'],
-		'FORUM_SEO_DESC'        => $forum_data['forum_seo_desc'],
-		'FORUM_SEO_BOTTOM'      => $forum_data['forum_seo_bottom'],]]></action>
+			<find><![CDATA[		<!-- IF U_JABBER and S_JABBER_ENABLED --><dt>{L_JABBER}:</dt> <dd><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_JABBER_MESSAGE}</a></dd><!-- ELSEIF USER_JABBER --><dt>{L_JABBER}:</dt> <dd>{USER_JABBER}</dd><!-- ENDIF -->]]></find>
+			<action type="after-add"><![CDATA[		<!-- IF USER_GITHUB --><dt>{L_GITHUB}:</dt> <dd>{USER_GITHUB}</dd><!-- ENDIF -->]]></action>
 		</edit>
 	</open>
 	<open src="styles/prosilver/template/viewforum_body.html">
@@ -110,6 +115,14 @@ if ( $config['allow_baidu_share'] )
 		<edit>
 			<find><![CDATA[<!-- INCLUDE jumpbox.html -->]]></find>
 			<action type="before-add"><![CDATA[<!-- IF FORUM_SEO_BOTTOM --><div><br /><span>{FORUM_SEO_BOTTOM}</span><br /></div><!-- ENDIF -->]]></action>
+		</edit>
+	</open>
+	<open src="includes/functions_display.php">
+		<edit>
+			<find><![CDATA[		'FORUM_DESC'	=> generate_text_for_display($forum_data['forum_desc'], $forum_data['forum_desc_uid'], $forum_data['forum_desc_bitfield'], $forum_data['forum_desc_options']),]]></find>
+			<action type="before-add"><![CDATA[		'FORUM_SEO_KEY'         => $forum_data['forum_seo_key'],
+		'FORUM_SEO_DESC'        => $forum_data['forum_seo_desc'],
+		'FORUM_SEO_BOTTOM'      => $forum_data['forum_seo_bottom'],]]></action>
 		</edit>
 	</open>
 	<open src="includes/acp/acp_users.php">
