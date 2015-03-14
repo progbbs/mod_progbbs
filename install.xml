@@ -111,7 +111,23 @@ if ( $config['allow_baidu_share'] )
 			<find><![CDATA[<!-- INCLUDE jumpbox.html -->]]></find>
 			<action type="before-add"><![CDATA[<!-- IF FORUM_SEO_BOTTOM --><div><br /><span>{FORUM_SEO_BOTTOM}</span><br /></div><!-- ENDIF -->]]></action>
 		</edit>
-	</open>	
+	</open>
+	<open src="includes/acp/acp_users.php">
+		<edit>
+			<find><![CDATA[				$data['user_birthday']	= sprintf('%2d-%2d-%4d', $data['bday_day'], $data['bday_month'], $data['bday_year']);]]></find>
+			<action type="after-add"><![CDATA[
+				$data['github'] = request_var('github', $user_row['user_github']);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[						'yim'			=> array('string', true, 5, 255),]]></find>
+			<action type="after-add"><![CDATA[						'github'		=> array('string', true, 1, 255),]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[						);]]></find>
+			<action type="after-add"><![CDATA[
+						$sql_ary['user_github'] = $data['github'];]]></action>
+		</edit>
+	</open>
 	<open src="includes/acp/acp_board.php">
 		<edit>
 			<find>						'allow_quick_reply'		=> array('lang' => 'ALLOW_QUICK_REPLY',		'validate' => 'bool',	'type' => 'custom', 'method' => 'quick_reply', 'explain' => true),</find>
