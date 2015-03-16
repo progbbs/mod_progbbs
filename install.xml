@@ -200,6 +200,16 @@ if ( $config['allow_baidu_share'] )
 				$data['github'] = request_var('github', $user->data['user_github']);]]></action>
 		</edit>
 		<edit>
+			<find><![CDATA[						'yim'			=> array('string', true, 5, 255),]]></find>
+			<action type="after-add"><![CDATA[						'github'		=> array('string', true, 1, 255),]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[							'user_notify_type'	=> $data['notify'],
+						);]]></find>
+			<action type="after-add"><![CDATA[
+						$sql_ary['user_github'] = $data['github'];]]></action>
+		</edit>
+		<edit>
 			<find><![CDATA[					'INTERESTS'	=> $data['interests'],
 				));]]></find>
 			<action type="after-add"><![CDATA[
