@@ -117,6 +117,16 @@ if ( $config['allow_baidu_share'] )
 			<action type="before-add"><![CDATA[<!-- IF FORUM_SEO_BOTTOM --><div><br /><span>{FORUM_SEO_BOTTOM}</span><br /></div><!-- ENDIF -->]]></action>
 		</edit>
 	</open>
+	<open src="styles/prosilver/template/ucp_profile_profile_info.html">
+		<edit>
+			<find><![CDATA[		<dd><input type="text" name="jabber" id="jabber" maxlength="255" value="{JABBER}" class="inputbox" /></dd>
+	</dl>]]></find>
+			<action type="after-add"><![CDATA[	<dl>
+		<dt><label for="github">{L_UCP_GITHUB}:</label></dt>
+		<dd><input type="text" name="github" id="github" maxlength="255" value="{GITHUB}" class="inputbox" /></dd>
+	</dl>]]></action>
+		</edit>
+	</open>
 	<open src="includes/functions_display.php">
 		<edit>
 			<find><![CDATA[		'FORUM_DESC'	=> generate_text_for_display($forum_data['forum_desc'], $forum_data['forum_desc_uid'], $forum_data['forum_desc_bitfield'], $forum_data['forum_desc_options']),]]></find>
