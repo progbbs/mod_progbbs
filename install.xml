@@ -192,6 +192,20 @@ if ( $config['allow_baidu_share'] )
 					'FORUM_SEO_BOTTOM'          => $forum_data['forum_seo_bottom'],]]></action>
 		</edit>
 	</open>
+	<open src="includes/ucp/ucp_profile.php">
+		<edit>
+			<find><![CDATA[					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
+				);]]></find>
+			<action type="after-add"><![CDATA[
+				$data['github'] = request_var('github', $user->data['user_github']);]]></action>
+		</edit>
+		<edit>
+			<find><![CDATA[					'INTERESTS'	=> $data['interests'],
+				));]]></find>
+			<action type="after-add"><![CDATA[
+				$template->assign_var('GITHUB', $data['github']);]]></action>
+		</edit>
+	</open>
 	<open src="adm/style/acp_users_profile.html">
 		<edit>
 			<find><![CDATA[		<dd><input type="text" id="jabber" name="jabber" value="{JABBER}" /></dd>
