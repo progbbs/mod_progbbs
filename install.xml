@@ -179,6 +179,19 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 	</dl>]]></action>
 		</edit>
 	</open>
+	<open src="styles/prosilver/template/ucp_pm_viewmessage.html">
+		<edit>
+			<find><![CDATA[		<!-- IF U_PM or U_EMAIL or U_WWW or U_MSN or U_ICQ or U_YIM or U_AIM or U_JABBER -->]]></find>
+			<inline-edit>
+				<inline-find><![CDATA[U_JABBER]]></inline-find>
+				<inline-action type="after-add"><![CDATA[ or U_GITHUB]]></inline-action>
+			</inline-edit>
+		</edit>
+		<edit>
+			<find><![CDATA[			<!-- IF U_JABBER --><li class="jabber-icon"><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->]]></find>
+			<action type="after-add"><![CDATA[			<!-- IF U_GITHUB --><li class="github-icon"><a href="{U_GITHUB}" title="{L_GITHUB}"><span>{L_GITHUB}</span></a></li><!-- ENDIF -->]]></action>
+		</edit>
+	</open>
 	<open src="includes/functions_display.php">
 		<edit>
 			<find><![CDATA[		'FORUM_DESC'	=> generate_text_for_display($forum_data['forum_desc'], $forum_data['forum_desc_uid'], $forum_data['forum_desc_bitfield'], $forum_data['forum_desc_options']),]]></find>
@@ -273,6 +286,13 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 				));]]></find>
 			<action type="after-add"><![CDATA[
 				$template->assign_var('GITHUB', $data['github']);]]></action>
+		</edit>
+	</open>
+	<open src="includes/ucp/ucp_pm_viewmessage.php">
+		<edit>
+			<find><![CDATA[	);]]></find>
+			<action type="after-add"><![CDATA[
+	$template->assign_var('U_GITHUB', $user_info['user_github']);]]></action>
 		</edit>
 	</open>
 	<open src="adm/style/acp_users_profile.html">
