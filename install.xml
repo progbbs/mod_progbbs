@@ -72,6 +72,11 @@ if ( $config['allow_baidu_share'] )
 	</open>
 	<open src="memberlist.php">
 		<edit>
+			<find><![CDATA[$user->setup(array('memberlist', 'groups'));]]></find>
+			<action type="after-add"><![CDATA[
+$user->add_lang('mods/info_acp_progbbs');]]></action>
+		</edit>
+		<edit>
 			<find><![CDATA[		'L_VIEWING_PROFILE'	=> sprintf($user->lang['VIEWING_PROFILE'], $username),]]></find>
 			<action type="after-add"><![CDATA[
 		'USER_GITHUB'		=> $data['user_github'],]]></action>
@@ -96,6 +101,7 @@ if ( $config['allow_baidu_share'] )
 			<find><![CDATA[	'U_BUMP_TOPIC'			=> (bump_topic_allowed($forum_id, $topic_data['topic_bumped'], $topic_data['topic_last_post_time'], $topic_data['topic_poster'], $topic_data['topic_last_poster_id'])) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=bump&amp;f=$forum_id&amp;t=$topic_id&amp;hash=" . generate_link_hash("topic_$topic_id")) : '')
 );]]></find>
 			<action type="after-add"><![CDATA[
+$user->add_lang('mods/info_acp_progbbs');
 $template->assign_var('GITHUB_IMG', $user->img('icon_contact_github', 'GITHUB'));]]></action>
 		</edit>
 		<edit>
@@ -204,6 +210,7 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 		<edit>
 			<find><![CDATA[				$data['user_birthday']	= sprintf('%2d-%2d-%4d', $data['bday_day'], $data['bday_month'], $data['bday_year']);]]></find>
 			<action type="after-add"><![CDATA[
+				$user->add_lang('mods/info_acp_progbbs');
 				$data['github'] = request_var('github', $user_row['user_github']);]]></action>
 		</edit>
 		<edit>
@@ -225,6 +232,7 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 		<edit>
 			<find><![CDATA[		);]]></find>
 			<action type="after-add"><![CDATA[
+		$user->add_lang('mods/info_acp_progbbs');
 		$this->imageset_keys['icons'][] = 'icon_contact_github';]]></action>
 		</edit>
 	</open>
@@ -269,6 +277,7 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 			<find><![CDATA[					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
 				);]]></find>
 			<action type="after-add"><![CDATA[
+				$user->add_lang('mods/info_acp_progbbs');
 				$data['github'] = request_var('github', $user->data['user_github']);]]></action>
 		</edit>
 		<edit>
@@ -292,6 +301,7 @@ img_icon_contact_github = icon_contact_github.gif*20*28]]></action>
 		<edit>
 			<find><![CDATA[	);]]></find>
 			<action type="after-add"><![CDATA[
+	$user->add_lang('mods/info_acp_progbbs');
 	$template->assign_var('U_GITHUB', $user_info['user_github']);]]></action>
 		</edit>
 	</open>
